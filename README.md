@@ -18,13 +18,25 @@ SwiftUI + Combine + MVVM 구조로 구현되었습니다.
 ### ⭐ Star / Unstar
 - 검색 결과에서 바로 Star/Unstar 가능합니다.
 - 프로필 화면에서 Starred Repository 목록 확인 가능
-- 리스트에서 스와이프하거나 버튼을 눌러 Star 상태 토글 가능
 
 ### 🔄 Pull to Refresh
 - 프로필 화면에서 아래로 당겨 새로고침(Pull To Refresh)를 통해 최신 Star 상태를 갱신합니다.
 
 ### ⚠️ 주의: 새로고침 시 목록이 즉시 반영되지 않을 수 있습니다. 
 - 이는 GitHub API 특성으로, 잠시 후 새로고침하면 최신 상태가 표시됩니다.
+
+---
+
+## ✏️ 기술 스택
+
+- **언어**: Swift
+- **UI 프레임워크**: SwiftUI
+- **비동기 처리**: Combine
+- **네트워크 라이브러리**: Alamofire
+- **API**: GitHub REST API
+- **데이터 처리**: Codable, JSON
+- **이미지 처리**: AsyncImage
+- **앱 구조**: MVVM 패턴
 
 ---
 
@@ -43,4 +55,5 @@ SwiftUI + Combine + MVVM 구조로 구현되었습니다.
 ```swift
 let clientID = "YOUR_CLIENT_ID"
 let clientSecret = "YOUR_CLIENT_SECRET"
+
 
