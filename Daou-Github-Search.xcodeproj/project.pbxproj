@@ -11,8 +11,27 @@
 		A066A84F2E5BDBD000BBF69C /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = A066A84E2E5BDBD000BBF69C /* KeychainAccess */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		D51FEF5C2EC7112C00C1DC34 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A066A8202E580DB800BBF69C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A066A8272E580DB800BBF69C;
+			remoteInfo = "Daou-Github-Search";
+		};
+		D51FEF6B2EC713BB00C1DC34 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A066A8202E580DB800BBF69C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A066A8272E580DB800BBF69C;
+			remoteInfo = "Daou-Github-Search";
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		A066A8282E580DB800BBF69C /* Daou-Github-Search.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Daou-Github-Search.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D51FEF582EC7112C00C1DC34 /* Daou-Github-SearchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Daou-Github-SearchTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D51FEF652EC713BB00C1DC34 /* Daou-Github-SearchUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Daou-Github-SearchUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -34,6 +53,11 @@
 			path = "Daou-Github-Search";
 			sourceTree = "<group>";
 		};
+		D51FEF592EC7112C00C1DC34 /* Daou-Github-SearchTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "Daou-Github-SearchTests";
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,6 +70,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D51FEF552EC7112C00C1DC34 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D51FEF622EC713BB00C1DC34 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -53,6 +91,7 @@
 			isa = PBXGroup;
 			children = (
 				A066A82A2E580DB800BBF69C /* Daou-Github-Search */,
+				D51FEF592EC7112C00C1DC34 /* Daou-Github-SearchTests */,
 				A066A8292E580DB800BBF69C /* Products */,
 			);
 			sourceTree = "<group>";
@@ -61,6 +100,8 @@
 			isa = PBXGroup;
 			children = (
 				A066A8282E580DB800BBF69C /* Daou-Github-Search.app */,
+				D51FEF582EC7112C00C1DC34 /* Daou-Github-SearchTests.xctest */,
+				D51FEF652EC713BB00C1DC34 /* Daou-Github-SearchUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -92,6 +133,49 @@
 			productReference = A066A8282E580DB800BBF69C /* Daou-Github-Search.app */;
 			productType = "com.apple.product-type.application";
 		};
+		D51FEF572EC7112C00C1DC34 /* Daou-Github-SearchTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D51FEF5E2EC7112C00C1DC34 /* Build configuration list for PBXNativeTarget "Daou-Github-SearchTests" */;
+			buildPhases = (
+				D51FEF542EC7112C00C1DC34 /* Sources */,
+				D51FEF552EC7112C00C1DC34 /* Frameworks */,
+				D51FEF562EC7112C00C1DC34 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D51FEF5D2EC7112C00C1DC34 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				D51FEF592EC7112C00C1DC34 /* Daou-Github-SearchTests */,
+			);
+			name = "Daou-Github-SearchTests";
+			packageProductDependencies = (
+			);
+			productName = "Daou-Github-SearchTests";
+			productReference = D51FEF582EC7112C00C1DC34 /* Daou-Github-SearchTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		D51FEF642EC713BB00C1DC34 /* Daou-Github-SearchUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D51FEF6D2EC713BB00C1DC34 /* Build configuration list for PBXNativeTarget "Daou-Github-SearchUITests" */;
+			buildPhases = (
+				D51FEF612EC713BB00C1DC34 /* Sources */,
+				D51FEF622EC713BB00C1DC34 /* Frameworks */,
+				D51FEF632EC713BB00C1DC34 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D51FEF6C2EC713BB00C1DC34 /* PBXTargetDependency */,
+			);
+			name = "Daou-Github-SearchUITests";
+			packageProductDependencies = (
+			);
+			productName = "Daou-Github-SearchUITests";
+			productReference = D51FEF652EC713BB00C1DC34 /* Daou-Github-SearchUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -99,11 +183,19 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1640;
+				LastSwiftUpdateCheck = 1630;
 				LastUpgradeCheck = 1640;
 				TargetAttributes = {
 					A066A8272E580DB800BBF69C = {
 						CreatedOnToolsVersion = 16.4;
+					};
+					D51FEF572EC7112C00C1DC34 = {
+						CreatedOnToolsVersion = 16.3;
+						TestTargetID = A066A8272E580DB800BBF69C;
+					};
+					D51FEF642EC713BB00C1DC34 = {
+						CreatedOnToolsVersion = 16.3;
+						TestTargetID = A066A8272E580DB800BBF69C;
 					};
 				};
 			};
@@ -126,12 +218,28 @@
 			projectRoot = "";
 			targets = (
 				A066A8272E580DB800BBF69C /* Daou-Github-Search */,
+				D51FEF572EC7112C00C1DC34 /* Daou-Github-SearchTests */,
+				D51FEF642EC713BB00C1DC34 /* Daou-Github-SearchUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		A066A8262E580DB800BBF69C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D51FEF562EC7112C00C1DC34 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D51FEF632EC713BB00C1DC34 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -148,7 +256,34 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D51FEF542EC7112C00C1DC34 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D51FEF612EC713BB00C1DC34 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D51FEF5D2EC7112C00C1DC34 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A066A8272E580DB800BBF69C /* Daou-Github-Search */;
+			targetProxy = D51FEF5C2EC7112C00C1DC34 /* PBXContainerItemProxy */;
+		};
+		D51FEF6C2EC713BB00C1DC34 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A066A8272E580DB800BBF69C /* Daou-Github-Search */;
+			targetProxy = D51FEF6B2EC713BB00C1DC34 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		A066A8312E580DBA00BBF69C /* Debug */ = {
@@ -332,6 +467,96 @@
 			};
 			name = Release;
 		};
+		D51FEF5F2EC7112C00C1DC34 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5MH57K7U7U;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.4;
+				MACOSX_DEPLOYMENT_TARGET = 15.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "juhee.Daou-Github-SearchTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Daou-Github-Search.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Daou-Github-Search";
+				XROS_DEPLOYMENT_TARGET = 2.4;
+			};
+			name = Debug;
+		};
+		D51FEF602EC7112C00C1DC34 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5MH57K7U7U;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.4;
+				MACOSX_DEPLOYMENT_TARGET = 15.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "juhee.Daou-Github-SearchTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Daou-Github-Search.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Daou-Github-Search";
+				XROS_DEPLOYMENT_TARGET = 2.4;
+			};
+			name = Release;
+		};
+		D51FEF6E2EC713BB00C1DC34 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5MH57K7U7U;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.4;
+				MACOSX_DEPLOYMENT_TARGET = 15.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "juhee.Daou-Github-SearchUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TEST_TARGET_NAME = "Daou-Github-Search";
+				XROS_DEPLOYMENT_TARGET = 2.4;
+			};
+			name = Debug;
+		};
+		D51FEF6F2EC713BB00C1DC34 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5MH57K7U7U;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.4;
+				MACOSX_DEPLOYMENT_TARGET = 15.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "juhee.Daou-Github-SearchUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TEST_TARGET_NAME = "Daou-Github-Search";
+				XROS_DEPLOYMENT_TARGET = 2.4;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -349,6 +574,24 @@
 			buildConfigurations = (
 				A066A8342E580DBA00BBF69C /* Debug */,
 				A066A8352E580DBA00BBF69C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D51FEF5E2EC7112C00C1DC34 /* Build configuration list for PBXNativeTarget "Daou-Github-SearchTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D51FEF5F2EC7112C00C1DC34 /* Debug */,
+				D51FEF602EC7112C00C1DC34 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D51FEF6D2EC713BB00C1DC34 /* Build configuration list for PBXNativeTarget "Daou-Github-SearchUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D51FEF6E2EC713BB00C1DC34 /* Debug */,
+				D51FEF6F2EC713BB00C1DC34 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
