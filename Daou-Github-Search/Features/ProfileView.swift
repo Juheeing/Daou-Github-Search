@@ -32,7 +32,6 @@ struct ProfileView: View {
                     }
                 }
             }
-            .padding()
         }
         .refreshable {
             viewModel.fetchStarredRepos()

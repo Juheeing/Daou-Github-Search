@@ -33,10 +33,11 @@ struct ProfileRootView: View {
                             .foregroundColor(.white)
                             .frame(maxWidth: .infinity)
                             .padding()
-                            .background(Color.blue)
+                            .background(Color.gray)
                             .cornerRadius(12)
                     }
                     Text("로그인 해주세요.")
+                        .font(.title3)
                         .foregroundColor(.secondary)
                 }
                 .padding()
