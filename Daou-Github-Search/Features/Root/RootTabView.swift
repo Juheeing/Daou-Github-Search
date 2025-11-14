@@ -59,6 +59,9 @@ struct RootTabView: View {
             showLogin = false
             isLoggedIn = true
         }
+        .onAppear {
+            isLoggedIn = loginService.isLoggedIn
+        }
     }
 }
 

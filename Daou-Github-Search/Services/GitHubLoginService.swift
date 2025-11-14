@@ -15,6 +15,7 @@ protocol GitHubLoginService: AnyObject {
     func handle(_ url: URL) -> Bool
     var client: GitHubClientProtocol { get }
     func logout()
+    var isLoggedIn: Bool { get }
 }
 
 final class GitHubLoginServiceImplement: GitHubLoginService {
@@ -33,6 +34,9 @@ final class GitHubLoginServiceImplement: GitHubLoginService {
     private let loginCompletedSubject = PassthroughSubject<Void, Never>()
     var loginCompletedPublisher: AnyPublisher<Void, Never> {
         loginCompletedSubject.eraseToAnyPublisher()
+    }
+    var isLoggedIn: Bool {
+        keychainService.accessToken() != nil
     }
     
     init(client: GitHubClientProtocol, keychainService: KeychainService) {
