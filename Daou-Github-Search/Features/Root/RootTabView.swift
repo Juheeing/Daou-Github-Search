@@ -11,6 +11,8 @@ struct RootTabView: View {
     private let loginService: GitHubLoginService
     @State private var showLogin = false
     @State private var isLoggedIn = false
+    @State private var toastMessage: String = ""
+    @State private var showToast = false
 
     init(loginService: GitHubLoginService) {
         self.loginService = loginService
@@ -43,6 +45,7 @@ struct RootTabView: View {
                             if isLoggedIn {
                                 loginService.logout()
                                 isLoggedIn = false
+                                showToastMessage("로그아웃 되었습니다")
                             } else {
                                 showLogin = true
                             }
@@ -58,9 +61,26 @@ struct RootTabView: View {
         .onReceive(loginService.loginCompletedPublisher) {
             showLogin = false
             isLoggedIn = true
+            showToastMessage("로그인에 성공하였습니다")
         }
         .onAppear {
             isLoggedIn = loginService.isLoggedIn
+            if isLoggedIn {
+                showToastMessage("자동 로그인에 성공하였습니다")
+            }
+        }
+        .toast(isPresented: $showToast, message: toastMessage)
+    }
+    
+    private func showToastMessage(_ message: String, duration: Double = 2) {
+        toastMessage = message
+        withAnimation {
+            showToast = true
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + duration) {
+            withAnimation {
+                showToast = false
+            }
         }
     }
 }
