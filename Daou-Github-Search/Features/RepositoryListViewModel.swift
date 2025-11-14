@@ -83,4 +83,9 @@ class RepositoryListViewModel: ObservableObject {
                 .store(in: &cancellables)
         }
     }
+    
+    func resetRepos() {
+        repositories.removeAll()
+        starredRepos.removeAll()
+    }
 }

@@ -55,7 +55,7 @@ extension GitHubAPI: URLRequestConvertible {
         var request = URLRequest(url: url)
         request.method = method
         request.setValue("application/json", forHTTPHeaderField: "Accept")
-
+        print("asURLRequest: \(url)")
 
         switch self {
         case let .accessToken(clientID, clientSecret, code):

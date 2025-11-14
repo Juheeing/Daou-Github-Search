@@ -50,10 +50,22 @@ final class GitHubClient: GitHubClientProtocol {
         Future { promise in
             self.session.request(endpoint)
                 .validate(statusCode: 200..<300)
-                .responseDecodable(of: T.self) { response in
+                .responseData { response in
+                    
+                    if let data = response.data {
+                        printJson(from: data, endpoint: endpoint)
+                    }
+                    
                     switch response.result {
-                    case .success(let value): promise(.success(value))
-                    case .failure(let error): promise(.failure(error))
+                    case .success(let data):
+                        do {
+                            let decoded = try JSONDecoder().decode(T.self, from: data)
+                            promise(.success(decoded))
+                        } catch {
+                            promise(.failure(AFError.responseSerializationFailed(reason: .decodingFailed(error: error))))
+                        }
+                    case .failure(let error):
+                        promise(.failure(error))
                     }
                 }
         }.eraseToAnyPublisher()
@@ -63,12 +75,32 @@ final class GitHubClient: GitHubClientProtocol {
         Future { promise in
             self.session.request(endpoint)
                 .validate(statusCode: 200..<300)
-                .response { response in
+                .responseData { response in
+                    
+                    if let data = response.data, !data.isEmpty {
+                        printJson(from: data, endpoint: endpoint)
+                    }
+                    
                     switch response.result {
-                    case .success: promise(.success(()))
-                    case .failure(let error): promise(.failure(error))
+                    case .success:
+                        promise(.success(()))
+                    case .failure(let error):
+                        promise(.failure(error))
                     }
                 }
         }.eraseToAnyPublisher()
+    }
+}
+
+private func printJson(from data: Data, endpoint: GitHubAPI) {
+    if let jsonObject = try? JSONSerialization.jsonObject(with: data, options: []),
+       let prettyData = try? JSONSerialization.data(withJSONObject: jsonObject, options: [.prettyPrinted]),
+       let jsonString = String(data: prettyData, encoding: .utf8) {
+        
+        print("\n===== 📌 JSON Response (\(endpoint)) =====")
+        print(jsonString)
+        print("=======================================\n")
+    } else {
+        print("⚠️ JSON 파싱 실패: raw data -> \(String(data: data, encoding: .utf8) ?? "")")
     }
 }

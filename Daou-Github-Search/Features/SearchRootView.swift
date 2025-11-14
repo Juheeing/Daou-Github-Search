@@ -42,15 +42,21 @@ struct SearchRootView: View {
                     }
                 }
             }
-            .refreshable {
-                if isLoggedIn {
-                    viewModel.fetchStarredRepos()
-                }
+        }
+        .refreshable {
+            if isLoggedIn {
+                viewModel.fetchStarredRepos()
+            } else {
+                query = ""
+                viewModel.resetRepos()
             }
-            .onAppear {
-                if isLoggedIn {
-                    viewModel.fetchStarredRepos()
-                }
+        }
+        .onAppear {
+            if isLoggedIn {
+                viewModel.fetchStarredRepos()
+            } else {
+                query = ""
+                viewModel.resetRepos()
             }
         }
     }
