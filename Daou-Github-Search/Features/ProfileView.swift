@@ -9,23 +9,25 @@ import SwiftUI
 import Combine
 
 struct ProfileView: View {
-    let loginService: GitHubLoginService
-    @State private var starredRepos: [Repository] = []
-    @State private var cancellables = Set<AnyCancellable>()
+    @StateObject private var viewModel: RepositoryListViewModel
+
+    init(loginService: GitHubLoginService) {
+        _viewModel = StateObject(wrappedValue: RepositoryListViewModel(client: loginService.client))
+    }
 
     var body: some View {
         ScrollView {
             VStack(spacing: 12) {
-                ProfileHeaderView(client: loginService.client)
+                ProfileHeaderView(client: viewModel.client)
 
-                if starredRepos.isEmpty {
+                if viewModel.starredRepos.isEmpty {
                     Text("Starred 레포지토리가 없습니다.")
                         .foregroundColor(.secondary)
                         .padding()
                 } else {
-                    ForEach($starredRepos, id: \.id) { $repo in
+                    ForEach($viewModel.starredRepos, id: \.id) { $repo in
                         RepositoryCellView(repository: repo, isStarred: $repo.isStarred) { 
-                            toggleStar(repo)
+                            viewModel.toggleStar(repo)
                         }
                     }
                 }
@@ -33,66 +35,10 @@ struct ProfileView: View {
             .padding()
         }
         .refreshable {
-            await refreshStarredRepos()
+            viewModel.fetchStarredRepos()
         }
         .onAppear {
-            fetchStarredRepos()
-        }
-    }
-
-    private func fetchStarredRepos() {
-        loginService.client.myStarredRepositories()
-            .receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: { completion in
-                if case let .failure(error) = completion {
-                    print("Starred repo fetch error: \(error)")
-                }
-            }, receiveValue: { repos in
-                self.starredRepos = repos.map { repo in
-                    var r = repo
-                    r.isStarred = true
-                    return r
-                }
-            })
-            .store(in: &cancellables)
-    }
-
-    private func toggleStar(_ repo: Repository) {
-        if repo.isStarred {
-            loginService.client.unstar(owner: repo.owner.name, repo: repo.name)
-                .receive(on: DispatchQueue.main)
-                .sink(receiveCompletion: { _ in }, receiveValue: {
-                    if let index = starredRepos.firstIndex(where: { $0.id == repo.id }) {
-                        starredRepos[index].isStarred = false
-                    }
-                })
-                .store(in: &cancellables)
-        } else {
-            loginService.client.star(owner: repo.owner.name, repo: repo.name)
-                .receive(on: DispatchQueue.main)
-                .sink(receiveCompletion: { _ in }, receiveValue: {
-                    if let index = starredRepos.firstIndex(where: { $0.id == repo.id }) {
-                        starredRepos[index].isStarred = true
-                    }
-                })
-                .store(in: &cancellables)
-        }
-    }
-
-    private func refreshStarredRepos() async {
-        let reposPublisher = loginService.client.myStarredRepositories()
-        let repos = await withCheckedContinuation { continuation in
-            reposPublisher
-                .sink(receiveCompletion: { _ in },
-                      receiveValue: { repos in
-                    continuation.resume(returning: repos)
-                })
-                .store(in: &cancellables)
-        }
-        self.starredRepos = repos.map { repo in
-            var r = repo
-            r.isStarred = true
-            return r
+            viewModel.fetchStarredRepos()
         }
     }
 }
