@@ -19,7 +19,7 @@ struct RootTabView: View {
     var body: some View {
         TabView {
             NavigationStack {
-                SearchRootView()
+                SearchRootView(loginService: loginService, isLoggedIn: $isLoggedIn)
                     .toolbar {
                         ToolbarItem(placement: .principal) {
                             Text("GitHub").font(.headline)

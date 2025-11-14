@@ -23,14 +23,13 @@ struct ProfileView: View {
                         .foregroundColor(.secondary)
                         .padding()
                 } else {
-                    ForEach(starredRepos, id: \.id) { repo in
-                        RepositoryCellView(repository: repo) { repoToUnstar in
-                            unstarRepository(repoToUnstar)
+                    ForEach($starredRepos, id: \.id) { $repo in
+                        RepositoryCellView(repository: repo, isStarred: $repo.isStarred) {
+                            unstarRepository(repo)
                         }
                     }
                 }
             }
-            .padding()
         }
         .onAppear {
             fetchStarredRepos()
@@ -45,7 +44,11 @@ struct ProfileView: View {
                     print("Starred repo fetch error: \(error)")
                 }
             }, receiveValue: { repos in
-                self.starredRepos = repos
+                self.starredRepos = repos.map { repo in
+                    var r = repo
+                    r.isStarred = true
+                    return r
+                }
             })
             .store(in: &cancellables)
     }

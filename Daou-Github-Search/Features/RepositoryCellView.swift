@@ -9,14 +9,8 @@ import SwiftUI
 
 struct RepositoryCellView: View {
     let repository: Repository
-    @State private var isStarred: Bool
-    let onUnstar: (Repository) -> Void
-
-    init(repository: Repository, onUnstar: @escaping (Repository) -> Void) {
-        self.repository = repository
-        self._isStarred = State(initialValue: true)
-        self.onUnstar = onUnstar
-    }
+    @Binding var isStarred: Bool
+    let onToggleStar: () -> Void
 
     var body: some View {
         VStack(spacing: 0) {
@@ -48,8 +42,7 @@ struct RepositoryCellView: View {
                 }
                 Spacer()
                 Button(action: {
-                    isStarred = false
-                    onUnstar(repository)
+                    onToggleStar()
                 }) {
                     Image(systemName: isStarred ? "star.fill" : "star")
                         .foregroundColor(.yellow)
@@ -68,6 +61,7 @@ struct RepositoryCellView: View {
         return formatter.string(from: NSNumber(value: count)) ?? "0"
     }
 }
+
 
 
 
