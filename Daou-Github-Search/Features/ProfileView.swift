@@ -24,12 +24,16 @@ struct ProfileView: View {
                         .padding()
                 } else {
                     ForEach($starredRepos, id: \.id) { $repo in
-                        RepositoryCellView(repository: repo, isStarred: $repo.isStarred) {
-                            unstarRepository(repo)
+                        RepositoryCellView(repository: repo, isStarred: $repo.isStarred) { 
+                            toggleStar(repo)
                         }
                     }
                 }
             }
+            .padding()
+        }
+        .refreshable {
+            await refreshStarredRepos()
         }
         .onAppear {
             fetchStarredRepos()
@@ -53,17 +57,43 @@ struct ProfileView: View {
             .store(in: &cancellables)
     }
 
-    private func unstarRepository(_ repo: Repository) {
-        loginService.client.unstar(owner: repo.owner.name, repo: repo.name)
-            .receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: { completion in
-                if case let .failure(error) = completion {
-                    print("Unstar error: \(error)")
-                }
-            }, receiveValue: {
-                self.starredRepos.removeAll(where: { $0.id == repo.id })
-            })
-            .store(in: &cancellables)
+    private func toggleStar(_ repo: Repository) {
+        if repo.isStarred {
+            loginService.client.unstar(owner: repo.owner.name, repo: repo.name)
+                .receive(on: DispatchQueue.main)
+                .sink(receiveCompletion: { _ in }, receiveValue: {
+                    if let index = starredRepos.firstIndex(where: { $0.id == repo.id }) {
+                        starredRepos[index].isStarred = false
+                    }
+                })
+                .store(in: &cancellables)
+        } else {
+            loginService.client.star(owner: repo.owner.name, repo: repo.name)
+                .receive(on: DispatchQueue.main)
+                .sink(receiveCompletion: { _ in }, receiveValue: {
+                    if let index = starredRepos.firstIndex(where: { $0.id == repo.id }) {
+                        starredRepos[index].isStarred = true
+                    }
+                })
+                .store(in: &cancellables)
+        }
+    }
+
+    private func refreshStarredRepos() async {
+        let reposPublisher = loginService.client.myStarredRepositories()
+        let repos = await withCheckedContinuation { continuation in
+            reposPublisher
+                .sink(receiveCompletion: { _ in },
+                      receiveValue: { repos in
+                    continuation.resume(returning: repos)
+                })
+                .store(in: &cancellables)
+        }
+        self.starredRepos = repos.map { repo in
+            var r = repo
+            r.isStarred = true
+            return r
+        }
     }
 }
 
