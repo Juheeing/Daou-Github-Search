@@ -13,6 +13,8 @@ import UIKit
 protocol GitHubLoginService: AnyObject {
     var loginCompletedPublisher: AnyPublisher<Void, Never> { get }
     func handle(_ url: URL) -> Bool
+    var client: GitHubClientProtocol { get }
+    func logout()
 }
 
 final class GitHubLoginServiceImplement: GitHubLoginService {
@@ -24,7 +26,7 @@ final class GitHubLoginServiceImplement: GitHubLoginService {
         static let callbackHost = "login"
     }
 
-    private let client: GitHubClientProtocol
+    let client: GitHubClientProtocol
     private let keychainService: KeychainService
     private var cancellables = Set<AnyCancellable>()
     
@@ -59,5 +61,9 @@ final class GitHubLoginServiceImplement: GitHubLoginService {
             .store(in: &cancellables)
 
         return true
+    }
+    
+    func logout() {
+        keychainService.removeAccessToken() 
     }
 }
